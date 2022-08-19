@@ -1,7 +1,5 @@
 /** There are N towers. the height of the  ith tower is Hi.
  *  A sequence of towers is goof if there are not any two adjacents towers that have the same heights.
- * 
- * 
  */
 
 const readline = require("readline");
@@ -38,7 +36,6 @@ function isExpensierIfBacktracked(fromIndex, H, M, value) {
 }
 
 function minCost(N, H, M) {
-  console.log(M);
   let result = 0;
  
   const j = N - 1;
@@ -65,7 +62,7 @@ function minCost(N, H, M) {
 
 //this is a promise that creates an interface in case you want to introduce the values from console
 let gets = new Promise((success, reject) => {
-  rl.question("Write your tower sequece to process, Note you have to use spaces to separate values example '3 5 40 15 1 3 4' :\n", (series) => {
+  rl.question("Write your tower sequece to process, Note you have to use spaces to separate values example  3 5 40 15 1 3 4 :\n", (series) => {
     console.log("procesing ...");
     series = series.split(' ');
     success(series);
@@ -74,26 +71,19 @@ let gets = new Promise((success, reject) => {
 });
 
 gets.then((result) => {
-  console.log("result is: ", result);
   let temp = result
-  // console.log(temp);
-  let N = parseInt(temp[0]);
-
-  var H = [];
+  let N = parseInt(temp[0]); // number of towers
+  var H = []; // array of Tower Heights 
   for (let i = 1 + N; i < 1 + N; i++) {
-    H.push(parseInt(temp[i])); //
-    console.log(temp[i])  
+    H.push(parseInt(temp[i]));  
   }
-  console.log(H)
-  var M = [];
+  var M = []; // array of costs
   for (let i = 1 + N; i < 1 + N + N; i++) {
-    M.push(parseInt(temp[i])); //
-    console.log(temp[i])
-    
+    M.push(parseInt(temp[i])); 
   }
-  console.log(M)
 
-  console.log(minCost(N, H, M));
+
+  console.log('The minimun cost to Improve the sequence is: ', minCost(N, H, M));
 });
 
 

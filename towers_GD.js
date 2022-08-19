@@ -3,6 +3,7 @@
  */
 
 const readline = require("readline");
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -37,7 +38,7 @@ function isExpensierIfBacktracked(fromIndex, H, M, value) {
 
 function minCost(N, H, M) {
   let result = 0;
- 
+
   const j = N - 1;
 
   for (let i = 0; i < j; i++) {
@@ -62,28 +63,33 @@ function minCost(N, H, M) {
 
 //this is a promise that creates an interface in case you want to introduce the values from console
 let gets = new Promise((success, reject) => {
-  rl.question("Write your tower sequece to process, Note you have to use spaces to separate values example  3 5 40 15 1 3 4 :\n", (series) => {
-    console.log("procesing ...");
-    series = series.split(' ');
-    success(series);
-    rl.close();
-  });
+  rl.question(
+    "Write your tower sequece to process, Note you have to use spaces to separate values example  3 5 40 15 1 3 4 :\n",
+    (series) => {
+      console.log("procesing ...");
+      series = series.split(" ");
+      success(series);
+      rl.close();
+    }
+  );
 });
 
 gets.then((result) => {
-  let temp = result
+  let temp = result;
   let N = parseInt(temp[0]); // number of towers
-  var H = []; // array of Tower Heights 
-  for (let i = 1 + N; i < 1 + N; i++) {
-    H.push(parseInt(temp[i]));  
+
+  let H = []; // array of Tower Heights
+  for (let i = 1; i < 1 + N; i++) {
+    H.push(parseInt(temp[i]));
   }
-  var M = []; // array of costs
+
+  let M = []; // array of costs
   for (let i = 1 + N; i < 1 + N + N; i++) {
-    M.push(parseInt(temp[i])); 
+    M.push(parseInt(temp[i]));
   }
 
-
-  console.log('The minimun cost to Improve the sequence is: ', minCost(N, H, M));
+  console.log(
+    "The minimun cost to Improve the sequence is: ",
+    minCost(N, H, M)
+  );
 });
-
-

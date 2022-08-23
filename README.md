@@ -3,9 +3,41 @@ Solving a problem where two towers cant have same size if they're contiguous
 the principal idea is to create an algorithm that find minimun cost to do such action.
 
 # How to test 
-1- Run the code from console using command "node towersGD.js".
-2- the console will prompt to introduce values and will give you an example of how the values are expected, "3 40 20 5 1 2 3".
-3- it will perform the test and let you know the final result.  
+
+1 - Go to your prefered command line console and open the project directory. 
+
+2 - Write the commmand "npm run test" ie:
+
+
+![image](https://user-images.githubusercontent.com/30736564/186227036-614a7b43-e4d4-4c26-a363-fd4e89235502.png)
+
+the result is :
+
+![image](https://user-images.githubusercontent.com/30736564/186228761-6d261c28-e66a-4a90-82e1-be58e30551e9.png)
+
+# How change the test cases
+
+1 - Go to your prefered command line console and open the project directory.
+
+2 - Open the file "test.js"
+
+3 - add or remove your test cases to the "tests" array ie:
+
+![image](https://user-images.githubusercontent.com/30736564/186228046-c44c1cac-2ac0-4262-b4a9-3282f275cbbd.png)
+
+
+# Test Using CLE Interface
+
+1 - Go to your prefered command line console and open the project directory. 
+
+2 - Write the commmand "npm start" ie:
+
+![image](https://user-images.githubusercontent.com/30736564/186232701-0c3f7c77-b093-41f6-abc7-7a791b189051.png)
+
+
+the result is :
+
+![image](https://user-images.githubusercontent.com/30736564/186232857-8927ce15-a5ae-474d-be92-04a9d4d0abe1.png).
 
 
 # Test1: 
@@ -53,9 +85,9 @@ ScreenCapture:
 
 input: 3 2 2 3 4 1 5
 
-expected:2
+expected:2 //this is a negative test
 
-Result: 2
+Result: 1
 
 ScreenCapture:
 

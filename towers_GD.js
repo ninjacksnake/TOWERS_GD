@@ -111,7 +111,7 @@ getM = (N, temp) => {
 };
 
 //this function is to execute the minCost function directly, parameters should be passed using the interface
-let execute = async () => {
+module.exports.MinCost =  async () => {
   let result = await gets();
   let temp = result;
   let N = getN(temp); // number of towers
@@ -154,4 +154,4 @@ async function test(args, expectedResult, testName = "") {
 }
 
 module.exports.test = test;
-module.exports.MinCost = execute;
+

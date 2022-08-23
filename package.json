@@ -4,7 +4,8 @@
   "description": "Solving a problem where two towers cant have same size if they're contiguous\r the principal idea is to create an algorithm that find minimun cost to do such action.",
   "main": "towers_GD.js",
   "scripts": {
-    "test": "test"
+    "start": "node -e 'require(\"./towers_GD.js\").execute()'",
+    "test": "node ./test.js/"
   },
   "repository": {
     "type": "git",

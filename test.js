@@ -1,4 +1,6 @@
 const Towers_GD = require("./towers_GD");
+
+
 tests = [
   Towers_GD.test("3 2 2 3 4 1 5", 2),
   Towers_GD.test("3 2 2 3 4 1 5", 2),

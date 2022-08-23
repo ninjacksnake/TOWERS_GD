@@ -86,7 +86,6 @@ getN = (temp) => {
 
 getH = (N, temp) => {
   try {
-   
     let mH = [];
     for (let i = 1; i < 1 + N; i++) {
       // console.log(i, temp[i]);
@@ -112,44 +111,47 @@ getM = (N, temp) => {
 };
 
 //this function is to execute the minCost function directly, parameters should be passed using the interface
-let execute = () => {
-  gets.then((result) => {
-    let temp = result;
-    let N = getN(temp); // number of towers
-    let H = getH(N, temp); // array of Towers height
-    let M = getM(N, temp); // array of costs
-    console.log(
-      "The minimun cost to Improve the sequence is: ",
-      minCost(N, H, M)
-    );
-  });
+let execute = async () => {
+  let result = await gets();
+  let temp = result;
+  let N = getN(temp); // number of towers
+  let H = getH(N, temp); // array of Towers height
+  let M = getM(N, temp); // array of costs
+  console.log(
+    "The minimun cost to Improve the sequence is: ",
+    minCost(N, H, M)
+  );
 };
 
-
-async function test(args, expectedResult, testName ="" ) {
+async function test(args, expectedResult, testName = "") {
   if (args.length > 0) {
     args = args.split(" ");
     if (testName.length >= 0) {
       console.log(`Test: minCost of ${args} is equal to ${expectedResult}?`);
+    } else {
+      console.log(testName);
     }
-  else {  console.log(testName); }
     let N = getN(args); // number of towers
     let H = getH(N, args); // array of Towers Height
     let M = getM(N, args); // array of Towers Cost]
     let result = minCost(N, H, M);
     // console.log("Test result: ",result);
     try {
-     
-      assert.equal(result, expectedResult);  //assertion
+      assert.equal(result, expectedResult); //assertion
       console.log("TEST PASSED \n");
       return true;
     } catch (e) {
-      console.log("TEST FAIL! expected value:", e.expected," is different from result:", e.actual, "\n");
+      console.log(
+        "TEST FAIL! expected value:",
+        e.expected,
+        " is different from result:",
+        e.actual,
+        "\n"
+      );
       return false;
     }
   }
 }
 
 module.exports.test = test;
-module.exports.execute = execute;
- 
+module.exports.MinCost = execute;

@@ -1,0 +1,24 @@
+{
+  "name": "towers_gd",
+  "version": "1.0.0",
+  "description": "Solving a problem where two towers cant have same size if they're contiguous\r the principal idea is to create an algorithm that find minimun cost to do such action.",
+  "main": "towers_GD.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninjacksnake/TOWERS_GD.git"
+  },
+  "keywords": [
+    "towers",
+    "minimun",
+    "cost"
+  ],
+  "author": "Michael Fermin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninjacksnake/TOWERS_GD/issues"
+  },
+  "homepage": "https://github.com/ninjacksnake/TOWERS_GD#readme"
+}

@@ -3,6 +3,7 @@
  */
 
 const readline = require("readline");
+const assert = require("assert");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -62,34 +63,93 @@ function minCost(N, H, M) {
 }
 
 //this is a promise that creates an interface in case you want to introduce the values from console
-let gets = new Promise((success, reject) => {
-  rl.question(
-    "Write your tower sequece to process, Note you have to use spaces to separate values example  3 5 40 15 1 3 4 :\n",
-    (series) => {
-      console.log("procesing ...");
-      series = series.split(" ");
-      success(series);
-      rl.close();
+let gets = () =>
+  new Promise((success, reject) => {
+    rl.question(
+      "Write your tower sequece to process, Note you have to use spaces to separate values example  3 5 40 15 1 3 4 :\n",
+      (series) => {
+        console.log("procesing ...");
+        series = series.split(" ");
+        success(series);
+        rl.close();
+      }
+    );
+  });
+
+getN = (temp) => {
+  try {
+    return parseInt(temp[0]); // number of towers
+  } catch (e) {
+    console.log("Could not get number of towers", e.message);
+  }
+};
+
+getH = (N, temp) => {
+  try {
+   
+    let mH = [];
+    for (let i = 1; i < 1 + N; i++) {
+      // console.log(i, temp[i]);
+      mH.push(parseInt(temp[i]));
     }
-  );
-});
-
-gets.then((result) => {
-  let temp = result;
-  let N = parseInt(temp[0]); // number of towers
-
-  let H = []; // array of Tower Heights
-  for (let i = 1; i < 1 + N; i++) {
-    H.push(parseInt(temp[i]));
+    // console.log("mH",mH)
+    return mH;
+  } catch (error) {
+    console.log("Could not get heights ", error.message);
   }
+};
 
-  let M = []; // array of costs
-  for (let i = 1 + N; i < 1 + N + N; i++) {
-    M.push(parseInt(temp[i]));
+getM = (N, temp) => {
+  try {
+    let mM = [];
+    for (let i = 1 + N; i < 1 + N + N; i++) {
+      mM.push(parseInt(temp[i]));
+    }
+    return mM;
+  } catch (error) {
+    console.log("Could not get costs", error.message);
   }
+};
 
-  console.log(
-    "The minimun cost to Improve the sequence is: ",
-    minCost(N, H, M)
-  );
-});
+//this function is to execute the minCost function directly, parameters should be passed using the interface
+let execute = () => {
+  gets.then((result) => {
+    let temp = result;
+    let N = getN(temp); // number of towers
+    let H = getH(N, temp); // array of Towers height
+    let M = getM(N, temp); // array of costs
+    console.log(
+      "The minimun cost to Improve the sequence is: ",
+      minCost(N, H, M)
+    );
+  });
+};
+
+
+async function test(args, expectedResult, testName ="" ) {
+  if (args.length > 0) {
+    args = args.split(" ");
+    if (testName.length >= 0) {
+      console.log(`Test: minCost of ${args} is equal to ${expectedResult}?`);
+    }
+  else {  console.log(testName); }
+    let N = getN(args); // number of towers
+    let H = getH(N, args); // array of Towers Height
+    let M = getM(N, args); // array of Towers Cost]
+    let result = minCost(N, H, M);
+    // console.log("Test result: ",result);
+    try {
+     
+      assert.equal(result, expectedResult);  //assertion
+      console.log("TEST PASSED \n");
+      return true;
+    } catch (e) {
+      console.log("TEST FAIL! expected value:", e.expected," is different from result:", e.actual, "\n");
+      return false;
+    }
+  }
+}
+
+module.exports.test = test;
+module.exports.execute = execute;
+ 
